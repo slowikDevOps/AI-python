@@ -13,7 +13,7 @@ def wczytaj(waluta,od,do):
     currency_data = currency_req.json()
     return currency_data['rates']
 print("\nNowowanie Rubla, Rubelka i Kopiejek")
-rates = wczytaj('RUB','2019-10-01','2019-10-12')
+rates = wczytaj('RUB','2019-10-01','2019-10-08')
 #print(rates) - wyświetliłbym wszystkie parametry na raz więc ustawiłem komentarz. 
                 
 kursy_rub = pd.DataFrame.from_dict(rates)
@@ -26,7 +26,7 @@ rates = wczytaj('cad','2019-10-01','2019-10-08')
 kursy_cad = pd.DataFrame.from_dict(rates)
 # .head wyświetla tylko pierwsze 4 pozycje
 print(kursy_cad.head())
-print("\nDodatkowe informacje typu np. typ zmiennych:")
+print("\nDodatkowe informacje typu np. typ zmiennych:\n\n")
 print(kursy_cad.info())
 
 
@@ -43,3 +43,19 @@ dane_wykres = kursy_rub.set_index(['effectiveDate'])['mid']
 plt.plot(dane_wykres)
 plt.show()
 print("\nNa wykresie rozjechały się daty ale to celowe działanie bo przy rublach nie użyłem .head")
+
+
+print("\nUżycie funkcji corrcoef:\n\n")
+print(np.corrcoef(dane_wykrescan ,dane_wykres))
+
+
+
+print("\nPróba 5-tki(zadania 5-tego):\n\n")
+
+wykresy, (jeden, dwa) = plt.subplots(2, sharex=True)
+jeden.plot(dane_wykrescan, 'tab:pink')
+dwa.plot(dane_wykres, 'tab:blue')
+plt.show()
+
+
+
